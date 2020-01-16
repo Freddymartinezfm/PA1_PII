@@ -1,5 +1,5 @@
 template <class Entry>
-class Binary_node{
+struct Binary_node{
 //    data members:
    Entry data;
    Binary_node<Entry> *left;

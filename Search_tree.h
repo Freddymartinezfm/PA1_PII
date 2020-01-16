@@ -1,3 +1,7 @@
+#include "errorcode.h"
+#include "Binary_tree.h"
+
+
 template <class T>
 class Search_tree: public Binary_tree<T> {
 public:

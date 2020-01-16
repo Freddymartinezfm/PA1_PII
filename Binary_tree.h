@@ -1,3 +1,5 @@
+#include "Binary_node.h"
+
 #include <iostream>
 using namespace std;
 

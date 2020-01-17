@@ -41,10 +41,13 @@ public:
     string   getRole() const;
     void     setRole(string);
 
-    double   getSalary() const;
-    void     setSalary(double);
+    double getSalary() const;
+    void setSalary(double);
+
+
     //operator< should work based on ssn
-    bool    operator<(const Employee&);
+    bool operator<(const Employee&);
+    Employee& operator=(const Employee&);
     //operator<< is to print info of an employee.
     friend  ostream& operator<<(ostream&, const Employee&);
 };

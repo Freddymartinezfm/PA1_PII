@@ -3,130 +3,92 @@
 #include "Employee.h"
 #include <string>
 #include <iomanip>
+#include <iostream>
 #include "OnOptionsMenu.h"
 #include <cstring>
-#include "GetRawData.h"
 #include <fstream>
 #include <string>
 
 
-void read();
-std::vector<std::string> fields;
-Employee earray[20];
+void getRawData();
+bool qsort();
+void search();
+
+const int MAX_CAPACITY {22};
+Employee *list [MAX_CAPACITY];
+const std::string fileName = "employees.txt";
 
 int main(){
-	OnOptionsMenu menuOptions;
+	getRawData();
 	bool running = true;
-	Search_tree<Employee*> searchTree;
-	std::string fileName = "employees.txt";
-	GetRawData data(fileName);
-	menuOptions.menu();
 
 	while (running){
+		OnOptionsMenu menuOptions("Search Menu");
+		menuOptions.show();
 		std::string menuSelection;
 		std::cin >> menuSelection;
 
-		switch(std::stoi(menuSelection)){
+		switch (std::stoi(menuSelection)){
 			case 1:
-				std::cout << "option one selected results shown here " << std::endl;
-				//TODO search by SSN
-				menuOptions.menu();
-
+				search();
 				break;
-			// TODO add 2, 3, 4, 5, 
-
-			case 6:
-				std::cout << "option six selected results shown here " << std::endl;
-				//TODO size and display
+			case 2:
 				
-				// data.getRawData();
-
-				read();
-				menuOptions.menu();
-
 				break;
-			case 7:
+			case 3:
+				
+				break;
+			case 4:
 				std::cout << "Program ended " << std::endl;
-				//TODO size and display
 				running = false;
-				
 				break;
 			default:
-				std::cout << "Invalid " << std::endl;
-				menuOptions.menu();
-				break;
+				std::cout << "Error \n";
 		}
+		
+		
+		running = false;
 
-	}
-	// 	if (menuSelection == "i"){
-	// 		std::cout << "Enter new integer keys to insert. Enter 'q' to quit " << std::endl;
-	// 		std::string key;
-			
-	// 		while(std::cin >> key){	
-	// 			if (key == "q"){
-	// 				break;
-	// 			}
-	// 			try {
-	// 				searchTree.insert(std::stoi(key));
-
-	// 			} catch (exception &e){
-	// 				std::cout << "Invalid input to insert: '" << e.what() << "'" << " error.";
-	// 			}	
-	// 			searchTree.print();
-	// 		}
-	// 		menuOptions.menu();
-			
-	// 	} else if (menuSelection == "d"){
-	// 		std::cout << "Enter new integer keys to delete. Enter 'q' to quit " << std::endl;
-	// 		std::string key;
-			
-	// 		while(std::cin >> key){	
-	// 			if (key == "q"){
-	// 				std::cout << "quit";
-	// 				menuOptions.menu();
-	// 				break;
-	// 			}
-
-	// 			try {
-	// 				searchTree.remove(std::stoi(key));
-	// 			} catch (exception &e){
-	// 				std::cout << "Invalid input to remove: '" << e.what() << "'" << " error. ";
-	// 			}	
-	// 			searchTree.print();
-	// 		}
-
-	// 	} else if (menuSelection == "h"){
-	// 		std::cout << "The height of the binary tree is " <<  searchTree.height() << std::endl;
-	// 		menuOptions.menu();
-	// 	}  else if (menuSelection == "s"){
-	// 		std::cout << "The size of the binary tree is " <<  searchTree.size() << std::endl;
-	// 		menuOptions.menu();
-	// 	} else if (menuSelection == "c"){
-	// 		searchTree.clear();
-	// 		menuOptions.menu();
-	// 	} else if (menuSelection == "p"){
-	// 		searchTree.print();
-	// 		menuOptions.menu();
-	// 	} else if (menuSelection == "x"){
-	// 		std::cout << "Program ended " << std::endl;
-	// 		running = false;
-	// 		exit(1);
-	// 		}
-	// 	} 
-	return 0;
-}
-
-
-void read(){
-	std::ifstream inFile {"employees.txt"};
-	if (!inFile){
-		return;
 	}
 	
-	std::string data;
-
-	while (!inFile.eof()){
-		inFile >> data;
-		std::cout << data << " ";
-	}
 }
+
+
+void getRawData(){
+	std::string empCode, ssn, first, last, dept, role, salary;
+	int empCount;
+	
+	std::ifstream inFile {fileName};
+	if (!inFile.eof()){
+		while (inFile >> empCode >> ssn >> first >> last >> dept >> role >> salary){
+		Employee *temp = new Employee;
+		temp->setEmpCode(empCode);
+		temp->setSSN(ssn);
+		temp->setName(first, last);
+		temp->setDept(dept);
+		temp->setRole(role);
+		temp->setSalary(std::stoi(salary));
+
+		list[empCount++] = temp;
+		}	
+	}
+
+	std::cout << "Number of employees is: " << empCount << "\n";
+	for (int i = 0; i < MAX_CAPACITY; i++){
+		std::cout << *list[i] << std::endl;
+	}
+
+}
+
+
+
+void search( ){ // pass in func pointer to qsort 
+	std::string ssnCriteria;
+	std::cout << "Enter a SSN: ";
+	if (std::cin >> ssnCriteria){
+	}
+
+}
+
+
+

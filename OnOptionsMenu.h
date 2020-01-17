@@ -1,19 +1,12 @@
 #include <string>
 
-
 class OnOptionsMenu {
 
 public:
 	OnOptionsMenu();
 	OnOptionsMenu(std::string title);
-	void menu();
+	void show();
 
 private:
-	int leftOffSet;
-	int rightOffSet;
-	int middle;
 	std::string title;
-
-
-
 };

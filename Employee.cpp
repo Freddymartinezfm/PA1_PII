@@ -88,8 +88,8 @@ ostream& operator<<(ostream& os, const Employee& employee) {
         << std::setw(1)  << employee.getEmpCode() << " "
         << std::setw(14) << employee.getSSN() << ""
         << std::setw(16) << employee.getName() << ""
-        << std::setw(15)  <<  employee.getDept() << ""
-        << std::setw(18) << employee.getRole() << ""
+        << std::setw(15)  << employee.getDept() << ""
+        << std::setw(18) << std::right << employee.getRole() << ""
         << std::setw(14) << employee.getSalary() << "" << std::fixed << setprecision(2);
 
     return os;

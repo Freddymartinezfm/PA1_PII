@@ -7,13 +7,11 @@ OnOptionsMenu::OnOptionsMenu(){
 	
 }
 
-OnOptionsMenu::OnOptionsMenu(std::string title){
-	this->title = title;
-}
+OnOptionsMenu::OnOptionsMenu(std::string title) : title{title} {}
 
 void OnOptionsMenu::show(){
-	std::cout << std::setw(17)  << std::setfill('=') << title;
-	std::cout << std::setw(17)  << std::setfill('=') << std::endl;
+	std::cout << "\n" <<  std::setw(17)  << std::setfill('=') << title;
+	std::cout << std::setw(17)  << std::setfill('=') << " "  << std::endl;
 
 	std::cout << "1. Search an Employee by SSN " << std::endl;
 	std::cout << "2. View only SecOps team " << std::endl;
@@ -22,6 +20,9 @@ void OnOptionsMenu::show(){
 	
 	std::cout << std::setw(17)  << std::setfill('=') << title;
 	std::cout << std::setw(17)  << std::setfill('=') << " "  << std::endl;
+	std::cout << std::setfill(' ');
+	
 	std::cout << "Select an option: " ;
+
 
 }

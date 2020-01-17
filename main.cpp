@@ -11,8 +11,7 @@
 
 
 void getRawData();
-bool qsort();
-void search();
+Error_code simpleSearch();
 
 const int MAX_CAPACITY {22};
 Employee *list [MAX_CAPACITY];
@@ -30,7 +29,7 @@ int main(){
 
 		switch (std::stoi(menuSelection)){
 			case 1:
-				search();
+				simpleSearch();
 				break;
 			case 2:
 				
@@ -46,8 +45,6 @@ int main(){
 				std::cout << "Error \n";
 		}
 		
-		
-		running = false;
 
 	}
 	
@@ -67,7 +64,7 @@ void getRawData(){
 		temp->setName(first, last);
 		temp->setDept(dept);
 		temp->setRole(role);
-		temp->setSalary(std::stoi(salary));
+		temp->setSalary(std::stof(salary));
 
 		list[empCount++] = temp;
 		}	
@@ -82,13 +79,32 @@ void getRawData(){
 
 
 
-void search( ){ // pass in func pointer to qsort 
+Error_code simpleSearch( ){ // pass in func pointer to qsort 
 	std::string ssnCriteria;
 	std::cout << "Enter a SSN: ";
 	if (std::cin >> ssnCriteria){
 	}
 
+	std::cout << "Searching for " <<  ssnCriteria <<std::endl;
+	for (int i =0; i <= MAX_CAPACITY; i++){
+		Employee *item;
+		item = list[i];
+
+		if (item->getSSN() == ssnCriteria){
+			std::cout << *item;
+			return success;
+		}
+
+		// return not_present;
+	}
+
+	std::cout << "Not found " << std::endl;
+
+	return not_present;
+
 }
+
+
 
 
 

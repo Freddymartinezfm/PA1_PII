@@ -32,6 +32,7 @@ int main(){
 			switch (menuSelection){
 			case 1:
 				simpleSearch();
+				
 				break;
 			case 2:
 				

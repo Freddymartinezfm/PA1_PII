@@ -13,7 +13,7 @@ Employee.o: Employee.cpp Employee.h
 # 	rm -f *.o  
 
 clean:
-	del -f *.o 
-	del -f *.exe
-	del -f pa1  
+	del -F *.o 
+	del -F *.exe
+	del -F pa1  
 

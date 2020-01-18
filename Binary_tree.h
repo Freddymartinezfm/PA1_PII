@@ -297,6 +297,7 @@ Uses: The function recursive_preorder_print_node recursively
    if (sub_root != NULL) {
       if(sub_root->left != NULL || sub_root->right != NULL){
          cout << sub_root->data << ":  ";
+         
          if(sub_root->left != NULL)
             cout << sub_root->left->data << "  ";
          else

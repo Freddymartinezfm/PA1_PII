@@ -9,6 +9,8 @@ struct Binary_node{
    Binary_node();
    Binary_node(const Entry &x);
 
+   // Get data
+
 };
 
 template <class Entry>

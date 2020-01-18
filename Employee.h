@@ -47,6 +47,7 @@ public:
 
     //operator< should work based on ssn
     bool operator<(const Employee&);
+    bool operator>(const Employee&);
     Employee& operator=(const Employee&);
     //operator<< is to print info of an employee.
     friend  ostream& operator<<(ostream&, const Employee&);

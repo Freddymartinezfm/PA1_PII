@@ -75,6 +75,10 @@ bool Employee::operator<(const Employee& right){
     return this->getSSN() < right.getSSN();
 }
 
+bool Employee::operator>(const Employee& right){
+    return this->getSSN() > right.getSSN();
+}
+
 ostream& operator<<(ostream& os, const Employee& employee) {
     os 
         // debug

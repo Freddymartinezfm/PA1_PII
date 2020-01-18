@@ -78,14 +78,23 @@ void getRawData(){
 
 	inFile.close();
 
+// test
+	Search_tree<Employee*> tree;
 	std::cout << "Number of employees is: " << empCount << "\n";
 	for (int i = 0; i < MAX_CAPACITY; i++){
 		std::cout << *list[i] << std::endl;
+		tree.insert(list[i]);
+
 	}
+
+	
+
+	
 }
 
 Error_code simpleSearch( ){ // pass in func pointer to qsort 
-	double ssnCriteria;
+	// double ssnCriteria;
+	std::string  ssnCriteria;
 	std::cout << "Enter a SSN: ";
 
 	while (!(std::cin >> ssnCriteria).good()){
@@ -97,15 +106,25 @@ Error_code simpleSearch( ){ // pass in func pointer to qsort
 	for (int i =0; i <= MAX_CAPACITY; i++){
 		Employee *item;
 		item = list[i];
-		double key = std::stod(item->getSSN());
-
-		if (key == ssnCriteria){
+		std::string s;
+		s  = item->getSSN();
+		// double key = std::stod(item->getSSN());
+		if (s == ssnCriteria){
 			std::cout << *item;
-			return success;
 		} else {
-			std::cout << "Not found " << std::endl; 
-			return not_present;
+			//return not_present;
+			// TODO change back to double 
+
 		}
+
+
+		// if (key == ssnCriteria){
+		// 	std::cout << *item;
+		// 	return success;
+		// } else {
+		// 	std::cout << "Not found " << std::endl; 
+		// 	return not_present;
+		// }
 	}
 	return not_present;
 

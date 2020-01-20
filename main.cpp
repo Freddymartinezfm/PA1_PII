@@ -11,12 +11,26 @@
 
 
 void getRawData();
-Error_code simpleSearch();
+Error_code search();
+Error_code secOps(std::string&);
+Error_code devDevelopers(std::string&, std::string&);
+
+void sort();
+
+
+void sort(Employee *arr[], int size, bool (*compareFncPtr)(Employee &, Employee&));
+bool ascendingSSN(Employee  &lhs, Employee &rhs);
+bool descendingSSN(Employee  &lhs, Employee &rhs);
+void print();
+
+
+
 const int MAX_CAPACITY {22};
 Employee *list [MAX_CAPACITY];
 const std::string fileName = "employees.txt";
 
 int main(){
+
 	getRawData();
 	bool running = true;
 
@@ -24,6 +38,11 @@ int main(){
 		OnOptionsMenu menuOptions("Search Menu");
 		menuOptions.show();
 		int menuSelection;
+		std::string s = "SecOps";
+		std::string devOps = "DevOps";
+		std::string developer = "Developer";
+
+
 
 		if (!(std::cin >> menuSelection).good()){
 			std::cin.clear();
@@ -31,16 +50,26 @@ int main(){
 		} else {
 			switch (menuSelection){
 			case 1:
-				simpleSearch();
-				
+				search();
 				break;
 			case 2:
-				
+				secOps(s);
 				break;
 			case 3:
-				
+				devDevelopers(devOps, developer);
 				break;
 			case 4:
+				print();
+				break;
+			case 5:
+				sort(list, 22,  ascendingSSN);
+				print();
+				break;
+			case 6:
+				sort(list, 22, descendingSSN);
+				print();
+				break;
+			case 7:
 				std::cout << "Program ended " << std::endl;
 				running = false;
 				break;
@@ -84,51 +113,97 @@ void getRawData(){
 	for (int i = 0; i < MAX_CAPACITY; i++){
 		std::cout << *list[i] << std::endl;
 		tree.insert(list[i]);
-
 	}
-
-	
-
-	
 }
 
-Error_code simpleSearch( ){ // pass in func pointer to qsort 
-	// double ssnCriteria;
-	std::string  ssnCriteria;
+Error_code search(){ 
+	std::string  criteria;
 	std::cout << "Enter a SSN: ";
 
-	while (!(std::cin >> ssnCriteria).good()){
+	while (!(std::cin >> criteria).good()){
 		std::cin.clear();
 		std::cin.ignore(256, '\n');
 		std::cout << "Enter a SSN: ";	
 	} 
 
 	for (int i =0; i <= MAX_CAPACITY; i++){
-		Employee *item;
-		item = list[i];
-		std::string s;
-		s  = item->getSSN();
-		// double key = std::stod(item->getSSN());
-		if (s == ssnCriteria){
+		Employee *item = list[i];
+		std::string s = item->getSSN();
+		if (s.compare(criteria) == 0){
 			std::cout << *item;
-		} else {
-			//return not_present;
-			// TODO change back to double 
-
+			return success;
 		}
+	}
+	std::cerr << "Not found " << std::endl;
+	return not_present;
+}
 
 
-		// if (key == ssnCriteria){
-		// 	std::cout << *item;
-		// 	return success;
-		// } else {
-		// 	std::cout << "Not found " << std::endl; 
-		// 	return not_present;
-		// }
+Error_code secOps(std::string& c){
+	Employee *temp;
+
+	for (int i =0; i <= MAX_CAPACITY; i++){
+		temp = list[i];
+		std::string department = temp->getDept();
+
+		if (department.compare(c) == 0){
+			std::cout << *temp << std::endl;
+		}
 	}
 	return not_present;
 
 }
+
+Error_code devDevelopers(std::string& department,std::string& role ){
+	Employee *temp;
+
+	for (int i =0; i <= MAX_CAPACITY; i++){
+		temp = list[i];
+		std::string d = temp->getDept();
+		std::string r = temp->getRole();
+
+		if (d.compare(department) == 0){
+			std::cout << *temp << std::endl;
+		}
+	}
+	return not_present;
+
+}
+
+
+
+void print(){
+	for (int i =0; i < MAX_CAPACITY; i++){
+		std::cout << *list[i] << std::endl;
+	}
+}
+
+
+
+void sort(Employee *arr[], int size, bool (*compareFncPtr)(Employee &, Employee&)){
+	for (int i = 0; i < 22; i++){
+		int best = i;
+		for (int curr = i + 1; curr < 22; curr ++){
+			Employee *temp = list[best];
+			Employee *t = list[curr];
+			if (compareFncPtr(*temp, *t)){
+				best = curr;
+			}
+		}
+		std::swap(list[i], list[best]);
+	}
+}
+
+bool ascendingSSN(Employee & lhs, Employee& rhs){
+	return lhs > rhs;
+}
+
+bool descendingSSN(Employee & lhs, Employee& rhs){
+	return lhs.getSSN() < rhs.getSSN();
+}
+
+
+
 
 
 

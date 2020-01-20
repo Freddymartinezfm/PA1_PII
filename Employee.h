@@ -48,8 +48,14 @@ public:
     //operator< should work based on ssn
     bool operator<(const Employee&);
     bool operator>(const Employee&);
-    Employee& operator=(const Employee&);
+    bool operator==(Employee&);
+
+    // TODO copy constructio 
+
+    Employee(const Employee&);
     //operator<< is to print info of an employee.
+    class INVALID_NUMBER_OF_INPUTS {  };
+
     friend  ostream& operator<<(ostream&, const Employee&);
 };
 #endif

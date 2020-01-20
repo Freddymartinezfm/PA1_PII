@@ -79,10 +79,23 @@ bool Employee::operator>(const Employee& right){
     return this->getSSN() > right.getSSN();
 }
 
+bool Employee::operator==(Employee& right){
+    return this->getSSN() == right.getSSN();
+}
+
+// copy constructor and operator = 
+
+Employee::Employee(const Employee& rhs){
+    std::cout << "Copy constructor " ;
+
+}
+
+
+
 ostream& operator<<(ostream& os, const Employee& employee) {
     os 
         // debug
-        // << std::setw(1) << std::setfill('*') << employee.getEmpCode() << ""
+        // << std::setw(1) << employee.getEmpCode() << ""
         // << std::setw(14) << std::setfill('*')  << employee.getSSN() << ""
         // << std::setw(16) << std::setfill('*') << employee.getName() << ""
         // << std::setw(15) << std::setfill('*')   << employee.getDept() << ""

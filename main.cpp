@@ -14,16 +14,10 @@ void getRawData();
 Error_code search();
 Error_code secOps(std::string&);
 Error_code devDevelopers(std::string&, std::string&);
-
-void sort();
-
-
 void sort(Employee *arr[], int size, bool (*compareFncPtr)(Employee &, Employee&));
 bool ascendingSSN(Employee  &lhs, Employee &rhs);
 bool descendingSSN(Employee  &lhs, Employee &rhs);
 void print();
-
-
 
 const int MAX_CAPACITY {22};
 Employee *list [MAX_CAPACITY];
@@ -62,11 +56,11 @@ int main(){
 				print();
 				break;
 			case 5:
-				sort(list, 22,  ascendingSSN);
+				sort(list, MAX_CAPACITY,  ascendingSSN);
 				print();
 				break;
 			case 6:
-				sort(list, 22, descendingSSN);
+				sort(list, MAX_CAPACITY, descendingSSN);
 				print();
 				break;
 			case 7:
@@ -181,9 +175,9 @@ void print(){
 
 
 void sort(Employee *arr[], int size, bool (*compareFncPtr)(Employee &, Employee&)){
-	for (int i = 0; i < 22; i++){
+	for (int i = 0; i < MAX_CAPACITY; i++){
 		int best = i;
-		for (int curr = i + 1; curr < 22; curr ++){
+		for (int curr = i + 1; curr < MAX_CAPACITY; curr ++){
 			Employee *temp = list[best];
 			Employee *t = list[curr];
 			if (compareFncPtr(*temp, *t)){
@@ -201,11 +195,3 @@ bool ascendingSSN(Employee & lhs, Employee& rhs){
 bool descendingSSN(Employee & lhs, Employee& rhs){
 	return lhs.getSSN() < rhs.getSSN();
 }
-
-
-
-
-
-
-
-

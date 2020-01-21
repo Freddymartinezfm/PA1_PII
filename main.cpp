@@ -13,7 +13,7 @@
 void getRawData();
 Error_code search();
 Error_code secOps(std::string&);
-Error_code devDevelopers(std::string&, std::string&);
+Error_code devDevelopers(const std::string&, const std::string&);
 void sort(Employee *arr[], int size, bool (*compareFncPtr)(Employee &, Employee&));
 bool ascendingSSN(Employee  &lhs, Employee &rhs);
 bool descendingSSN(Employee  &lhs, Employee &rhs);
@@ -33,8 +33,8 @@ int main(){
 		menuOptions.show();
 		int menuSelection;
 		std::string s = "SecOps";
-		std::string devOps = "DevOps";
-		std::string developer = "Developer";
+		const std::string devOps = "DevOps";
+		const std::string developer = "Developer";
 
 
 
@@ -148,7 +148,7 @@ Error_code secOps(std::string& c){
 
 }
 
-Error_code devDevelopers(std::string& department,std::string& role ){
+Error_code devDevelopers(const std::string& department, const std::string& role ){
 	Employee *temp;
 
 	for (int i =0; i <= MAX_CAPACITY; i++){
@@ -157,7 +157,9 @@ Error_code devDevelopers(std::string& department,std::string& role ){
 		std::string r = temp->getRole();
 
 		if (d.compare(department) == 0){
-			std::cout << *temp << std::endl;
+			if (r.compare(role) == 0){
+				std::cout << *temp << std::endl;
+			}
 		}
 	}
 	return not_present;

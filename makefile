@@ -18,11 +18,11 @@ OnOptionsMenu.o: OnOptionsMenu.h OnOptionsMenu.cpp
 Employee.o: Employee.cpp Employee.h
 	g++ -c -g -Wall Employee.cpp
 
-clean:
-	rm -f *.o  pa1
-
 # clean:
-# 	del -F *.o 
-# 	del -F *.exe
-# 	del -F pa1  
+# 	rm -f *.o  pa1
+
+clean:
+	del -F *.o 
+	del -F *.exe
+	del -F pa1  
 

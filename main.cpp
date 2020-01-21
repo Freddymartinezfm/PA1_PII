@@ -1,6 +1,5 @@
-// The purpose o
-#include "Search_tree.h"
 #include "Employee.h"
+#include "errorcode.h"
 #include <string>
 #include <iomanip>
 #include <iostream>
@@ -100,14 +99,6 @@ void getRawData(){
 	}
 
 	inFile.close();
-
-// test
-	Search_tree<Employee*> tree;
-	std::cout << "Number of employees is: " << empCount << "\n";
-	for (int i = 0; i < MAX_CAPACITY; i++){
-		std::cout << *list[i] << std::endl;
-		tree.insert(list[i]);
-	}
 }
 
 Error_code search(){ 

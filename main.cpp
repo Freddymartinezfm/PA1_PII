@@ -148,7 +148,7 @@ Error_code secOps(std::string& c){
 
 }
 
-Error_code devDevelopers(const std::string& department, const std::string& role ){
+Error_code devDevelopers(const std::string& department,const std::string& role ){
 	Employee *temp;
 
 	for (int i =0; i <= MAX_CAPACITY; i++){

@@ -5,16 +5,6 @@
 
 Employee::Employee(){
 }
-Employee::Employee(vector<string>& fields){
-    code = fields[0];
-    ssn = fields[1];
-    first = fields[2];
-    last = fields[3];
-    department = fields[4];
-    role = fields[5];
-    salary = stof(fields[6]);
-}
-
 
 Employee::~Employee(){
     
